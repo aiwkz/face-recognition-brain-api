@@ -20,16 +20,14 @@ const handleRegister = (req, res, bcrypt, db) => {
                     joined: new Date()
                 })
                 .then(user => {
+                    res.set('Access-Control-Allow-Origin', '*');
                     res.json(user[0]);
                 })
             })
             .then(trx.commit)
             .catch(trx.rollback)
         })
-        .catch(err => {
-            console.log('Fede test', err);
-            res.status(400).json('Unable to register 2')
-        })
+        .catch(err => res.status(400).json('Unable to register'))
 };
 
 module.exports = {
