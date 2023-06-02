@@ -3,6 +3,7 @@ const handleRegister = (req, res, bcrypt, db) => {
     if(!name || !email || !password) {
         return res.status(400).json('Complete all the fields before submitting');
     }
+    console.log(db);
     const hash =bcrypt.hashSync(password);
     db.transaction(trx => {
         trx.insert({
@@ -12,7 +13,6 @@ const handleRegister = (req, res, bcrypt, db) => {
         .into('login')
         .returning('email')
         .then(loginEmail => {
-            console.log(loginEmail)
             return trx('users')
                 .returning('*')
                 .insert({

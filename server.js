@@ -16,7 +16,7 @@ const db = knex({
       port : 5432,
       user : 'aiwkz',
       password : 'aTNLhaAl4pkElko5mp1s94b4zqaViJpM',
-      database : 'db_face_recognition_brain_wuum'
+      database : 'db_face_recognition_brain_wuum',
     }
 });
 
