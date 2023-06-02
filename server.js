@@ -23,10 +23,17 @@ const db = knex({
     }
 });
 
+const corsOptions = {
+  origin: 'http://localhost:3001/',
+  optionsSuccessStatus: 200,
+  credentials: true
+  
+}
+
 const app = express();
 
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors(corsOptions));
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
