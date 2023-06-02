@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
 const knex = require('knex');
+const cors = require('cors')
 
 const register = require('./controllers/register');
 const signin = require('./controllers/signin');
@@ -10,14 +11,25 @@ const profile = require('./controllers/profile');
 const imageUrl = require('./controllers/image');
 
 const db = knex({
-  client: 'pg',
-  connection: process.env.DB_URL,
+    client: 'pg',
+    connection: {
+      host : 'dpg-chrl8g0rddlba9p2som0-a.frankfurt-postgres.render.com',
+      port : 5432,
+      user : 'aiwkz',
+      password : 'aTNLhaAl4pkElko5mp1s94b4zqaViJpM',
+      database : 'db_face_recognition_brain_wuum',
+      ssl: {
+        rejectUnauthorized: false
+      }
+    }
 });
 
 const app = express();
 
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({
+  origin: '*'
+}));
 
 app.get('/', (req, res) => {
     res.send('success')
