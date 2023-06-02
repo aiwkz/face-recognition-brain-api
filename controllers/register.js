@@ -12,6 +12,7 @@ const handleRegister = (req, res, bcrypt, db) => {
         .into('login')
         .returning('email')
         .then(loginEmail => {
+            console.log(loginEmail)
             return trx('users')
                 .returning('*')
                 .insert({
@@ -26,10 +27,7 @@ const handleRegister = (req, res, bcrypt, db) => {
             .then(trx.commit)
             .catch(trx.rollback)
         })
-        .catch(err => {
-            console.log(err)
-            res.status(400).json('Unable to register')
-        })
+        .catch(err => res.status(400).json('Unable to register'))
 };
 
 module.exports = {
