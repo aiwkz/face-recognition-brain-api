@@ -28,7 +28,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(cors({
-  origin: '*',
+  origin: 'https://face-recognition-brain-qmz5.onrender.com/',
 }));
 
 app.get('/', (req, res) => {
