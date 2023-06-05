@@ -25,10 +25,10 @@ const clarifaiApiCall = (req, res) => {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
-          'Authorization': 'Key ' + PAT
+          'Authorization': 'Key ' + PAT,
+          'Access-Control-Allow-Origin': '*'
         },
         body: raw,
-        mode: 'cors',
     };
 
     fetch("https://api.clarifai.com/v2/models/" + MODEL_ID + "/outputs", requestOptions)
