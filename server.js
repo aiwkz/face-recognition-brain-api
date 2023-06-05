@@ -27,10 +27,9 @@ const db = knex({
 const app = express();
 
 app.use(bodyParser.json());
-app.use('/api', (req, res) => {
-  const url = 'http://face-recognition-brain-api-gu0q.onrender.com' + req.url;
-  req.pipe(request(url)).pipe(res);
-});
+app.use(cors({
+  origin: 'http://localhost:3000'
+}));
 
 app.get('/', (req, res) => {
     res.send('success')
