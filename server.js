@@ -41,7 +41,7 @@ app.post('/signin', (req, res) => signin.handleSignin(req, res, bcrypt, db))
 
 app.post('/register', (req, res) => register.handleRegister(req, res, bcrypt, db))
 
-app.post('/imageUrl', (req, res) => imageUrl.clarifaiApiCall(req, res))
+app.post('/imageurl', (req, res) => imageUrl.clarifaiApiCall(req, res))
 
 app.listen(process.env.PORT || 3000, () => {
 	console.log(`app is running on port ${process.env.PORT || '3000'}`);
