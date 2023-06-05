@@ -1,14 +1,10 @@
-const clarifaiApiCall = (req, res) => {
-    const PAT = '10881e14e6ec49e185af430e206583ca';
-    const USER_ID = 'aiwkz';       
-    const APP_ID = 'face-recognition-brain';
-    const MODEL_ID = 'face-detection';  
+const clarifaiApiCall = (req, res) => { 
     const IMAGE_URL = req.body.input;
 
     const raw = JSON.stringify({
         "user_app_id": {
-          "user_id": USER_ID,
-          "app_id": APP_ID
+          "user_id": process.env.USER_ID,
+          "app_id": process.env.APP_ID
         },
         "inputs": [
           {
@@ -25,12 +21,12 @@ const clarifaiApiCall = (req, res) => {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
-          'Authorization': 'Key ' + PAT,
+          'Authorization': 'Key ' + process.env.PAT,
         },
         body: raw,
     };
 
-    fetch("https://api.clarifai.com/v2/models/" + MODEL_ID + "/outputs", requestOptions)
+    fetch("https://api.clarifai.com/v2/models/" + process.env.MODEL_ID + "/outputs", requestOptions)
       .then(response => response.json())
       .then(result => res.json(result))
       .catch(error => console.log('error', error));

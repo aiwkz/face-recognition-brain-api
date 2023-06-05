@@ -10,17 +10,17 @@ const profile = require('./controllers/profile');
 const imageUrl = require('./controllers/image');
 
 const db = knex({
-    client: 'pg',
-    connection: {
-      host : 'dpg-chrl8g0rddlba9p2som0-a.frankfurt-postgres.render.com',
-      port : 5432,
-      user : 'aiwkz',
-      password : 'aTNLhaAl4pkElko5mp1s94b4zqaViJpM',
-      database : 'db_face_recognition_brain_wuum',
-      ssl: {
-        rejectUnauthorized: false
-      }
+  client: 'pg',
+  connection: {
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    ssl: {
+      rejectUnauthorized: false
     }
+  }
 });
 
 
