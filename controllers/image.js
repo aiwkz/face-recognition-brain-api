@@ -29,9 +29,6 @@ const clarifaiApiCall = (req, res) => {
         },
         body: raw,
     };
-    
-    console.log('IMAGE_URL', req.body.input)
-    console.log('request body', requestOptions.body)
 
     fetch("https://api.clarifai.com/v2/models/" + MODEL_ID + "/outputs", requestOptions)
       .then(response => response.json())
