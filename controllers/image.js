@@ -26,7 +26,6 @@ const clarifaiApiCall = (req, res) => {
         headers: {
           'Accept': 'application/json',
           'Authorization': 'Key ' + PAT,
-          'Access-Control-Allow-Origin': '*'
         },
         body: raw,
     };
