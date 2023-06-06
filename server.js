@@ -9,6 +9,12 @@ const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
 const imageUrl = require('./controllers/image');
 
+console.log(process.env.DB_HOST);
+console.log(process.env.DB_PORT);
+console.log(process.env.DB_USER);
+console.log(process.env.DB_PASSWORD);
+console.log(process.env.DB_NAME);
+
 const db = knex({ 
   client: 'pg', 
   connection: { 
