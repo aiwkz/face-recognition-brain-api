@@ -22,10 +22,6 @@ const db = knex({
     },
   },
 });
- db.raw('SELECT 1')
-  .then(() => console.log('Database connection successful'))
-  .catch((error) => console.error(error));
-
 
 const app = express();
 
