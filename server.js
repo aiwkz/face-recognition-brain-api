@@ -1,13 +1,18 @@
 const express = require('express');
+const session = require('express-session');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
 const knex = require('knex');
+const crypto = require('crypto');
 
 const register = require('./controllers/register');
 const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
 const imageUrl = require('./controllers/image');
+
+
+const secret = crypto.randomBytes(16).toString('hex');
 
 const db = knex({
   client: 'pg',
@@ -24,7 +29,16 @@ const db = knex({
 });
 
 const app = express();
-
+ 
+app.use(session({
+    secret: secret,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        secure: true,
+        maxAge: 24 * 60 * 60 * 1000 // 24 hours
+    }
+}));
 app.use(bodyParser.json());
 app.use(cors({
   origin: 'https://face-recognition-brain-qmz5.onrender.com',
